@@ -1,13 +1,10 @@
 package com.skipper.firstapp;
 
 import android.app.Application;
-import android.os.Bundle;
 import android.util.Log;
+
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.AppsFlyerConversionListener;
-import java.util.Map;
-import com.appsflyer.AppsFlyerConversionListener;
-import com.appsflyer.AppsFlyerLib;
 
 import java.util.Map;
 
@@ -17,8 +14,11 @@ public class AFApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        /*  Setting Up Conversion Listener to get attribution data */
         AppsFlyerConversionListener conversionListener = new AppsFlyerConversionListener() {
 
+            /* Returns the attribution data.*/
             @Override
             public void onConversionDataSuccess(Map<String, Object> conversionData) {
 
@@ -38,7 +38,6 @@ public class AFApplication extends Application {
                 for (String attrName : attributionData.keySet()) {
                     Log.d("LOG_TAG", "attribute: " + attrName + " = " + attributionData.get(attrName));
                 }
-
             }
 
             @Override
@@ -47,7 +46,11 @@ public class AFApplication extends Application {
             }
         };
 
+        /* API to enable installations detection. */
         AppsFlyerLib.getInstance().init(AF_DEV_KEY, conversionListener, this);
         AppsFlyerLib.getInstance().startTracking(this);
+
+        /* Setting setDebugLog to true to view debug logs. */
+        AppsFlyerLib.getInstance().setDebugLog(true);
     }
 }
