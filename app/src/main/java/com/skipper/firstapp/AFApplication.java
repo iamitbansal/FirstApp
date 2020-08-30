@@ -9,7 +9,7 @@ import com.appsflyer.AppsFlyerConversionListener;
 import java.util.Map;
 
 public class AFApplication extends Application {
-    private static final String AF_DEV_KEY = "e82BUBbeh3XefxqbhgG4LK";
+    private static final String AF_DEV_KEY = "e********************K";
 
     @Override
     public void onCreate() {
