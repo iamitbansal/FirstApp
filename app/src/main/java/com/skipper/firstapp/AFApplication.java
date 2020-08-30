@@ -46,10 +46,14 @@ public class AFApplication extends Application {
             }
         };
 
-        /* API to enable installations detection. */
-        AppsFlyerLib.getInstance().init(AF_DEV_KEY, conversionListener, this);
-        AppsFlyerLib.getInstance().startTracking(this);
-
+        try {
+            /* API to enable installations detection. */
+            AppsFlyerLib.getInstance().init(AF_DEV_KEY, conversionListener, this);
+            AppsFlyerLib.getInstance().startTracking(this);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         /* Setting setDebugLog to true to view debug logs. */
         AppsFlyerLib.getInstance().setDebugLog(true);
     }

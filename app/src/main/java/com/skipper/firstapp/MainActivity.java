@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -32,11 +33,19 @@ public class MainActivity extends AppCompatActivity {
                 eventParameter.put(AFInAppEventParameterName.REVENUE, 200);
                 eventParameter.put(AFInAppEventParameterName.PRICE, 99);
                 eventParameter.put(AFInAppEventParameterName.CONTENT_TYPE, "Manufacturing");
-                eventParameter.put(AFInAppEventParameterName.COUPON_CODE, "AmitB100");
+                eventParameter.put(AFInAppEventParameterName.COUPON_CODE, "AmitB1000");
                 eventParameter.put(AFInAppEventParameterName.CONTENT_ID, "12233445");
                 eventParameter.put(AFInAppEventParameterName.CURRENCY, "INR");
 
-                AppsFlyerLib.getInstance().trackEvent(getApplicationContext(), AFInAppEventType.PURCHASE, eventParameter);
+                try {
+                    AppsFlyerLib.getInstance().trackEvent(getApplicationContext(), AFInAppEventType.PURCHASE, eventParameter);
+
+                    TextView dispCoupon = findViewById(R.id.dispCoupon);
+                    dispCoupon.setText("Use Coupon code: AmitB1000");
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
